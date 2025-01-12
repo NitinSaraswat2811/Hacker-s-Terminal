@@ -1,1 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker terminal</title>
+<style>
+    *{
+        background-color: green;
+    }
+    .container{
+        justify-self: center;
+        align-self: center;
+        height: 50vh;
+        width: 30vw;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="txt">     </h1>
+    </div>
+    <script>
+        const text = document.getElementById("txt");
+        const messages = [
+            "Initializing Hacking",
+            " Reading your files",
+            " Password files detected",
+            " Sending all passwords and personal files to server",
+            " Cleaning up",
+    ];
+    function getRandomDelay(){
+        return Math.floor(Math.random()*6000)+1000;
+    }
+    function delay(ms){
+        return new Promise((resolve)=>
+    setTimeout(resolve,ms));
+    }
+    async function displayMessages(){
+    for(const msg of messages) {
+        const delayTime = getRandomDelay();
+        await delay(delayTime);
+        text.textContent = msg;
+        await blinkDots(msg);
+    }
+    await delay(500);
+    text.textContent=("⚠️System Hacked⚠️");
 
+}
+async function blinkDots(msg) {
+    for(let i=0;i<5;i++){
+        await delay(500);
+       text.textContent=`${msg}.`;
+        await delay(500);
+        text.textContent=`${msg}..`;
+        await delay(500);
+        text.textContent=`${msg}...`;
+        await delay(500);
+        text.textContent=`${msg}`;
+
+    }
+    
+}
+displayMessages();
+    </script>
+</body>
+</html>
